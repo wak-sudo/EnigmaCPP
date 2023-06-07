@@ -1,0 +1,178 @@
+Wojciech Kieloch 339952
+
+Implementacja Enigmy M3 w C++.
+
+Będziemy wspierać:
+- Szyfrowanie/deszyfrowanie tekstu składającego się ze znaków łacińskich
+- 5 typów rotorów i 3 typy reflektorów
+- Ustalanie ustawień:
+    * Kolejność rotorów
+    * Początkową pozycję rotorów
+    * Ustawienia pierścienia (dodatkowe przesunięcie wyniku względem litery w alfabecie)
+    * Połączenia liter (zamiana liter na początku i na końcu szyfrowania znaku)
+- Odczyt i zapis do pliku
+
+Logika Enigmy będzie znajdować się w oddzielnej bibliotece. Interfejsem implementacji będzie konsola.
+
+[Część biblioteczna]
+
+Klasy:
+
+* UserRotor
+
+Przechowuje rotor użytkownika
+
+Pola:
+    - string RotorNumber
+       Nazwa rotora
+    - char InitialPosition
+    - char RingSetting
+    
+Metody:
+    public UserRotor(string RotorNumber, char InitalPosition, char RingSetting)
+        Przypisuje pola.
+
+* UserSettings
+
+Przechowuje ustawienia użytkownika
+
+Pola:
+    - string ReflectorName
+       Nazwa reflektora
+    - UserRotor* Rotors
+       Rotory
+    - vector<string> PlugboardConnections
+       Połączenia literowe
+
+Metody:
+    - public UserSettings(string ReflectorName, UserRotor* Rotors, vector<string> PlugboardConnections)
+        Ustawia pola
+    - public bool CanBeConverted()
+        Zwraca prawdę, jeżeli ustawienia użytkownika są prawidłowe.
+
+* EnigmaRotor
+
+Przechowuje informację na temat rotoru w przyjaznym formacie.
+
+Pola:
+    - string AlphabetRing
+        Alfabet rotoru.
+    - int Notch
+        Miejsca przeskoku dla rotora
+    - int Position
+        Pozycja rotora
+    - int RingSetting
+        Ustawienia pierścienia rotora
+
+Metody:
+    - EnigmaRotor(string AlphabetRing, int Notch, int InitialPosition, int RingSetting)
+        Ustawia pola.
+
+* EnigmaSettings
+
+Przechowuje informację na temat ustawień w przyjaznym formacie.
+
+Pola:
+     - string ReflectorAlphabet
+        Alfabet reflektora
+     - EnigmaRotor* Rotors
+        Rotory
+     - Map<char, char> PlugboardConnections
+        Połączenia liter
+
+Metody:
+    EnigmaSettings(string ReflectorAlphabet, EnigmaRotor* Rotors, Map<char, char> PlugboardConnections)
+        Ustawia pola.
+
+* SettingsConversion
+
+Klasa zaprojektowana do konwersji ustawień
+
+Pola:
+    - const int ValidNumberOfRotors = 3;
+    - const int MaxNumberOfConnections = 13;
+
+Metody:
+     - EnigmaSettings ConvertToEnigmaSettings(UserSettings UserOptions)
+        Konwertuje ustawienia użytkownika do ustawień przyjaznych enigmie
+     - EnigmaRotor* ConvertRotors(UserRotor* UserRotors)
+        Konwertuje rotory
+     - EnigmaRotor ConvertRotor(UserRotor Rotor)
+        Konwertuje rotor
+     - int ConvertCharacterToDecimal(char c)
+        Konwertuje symbol np. pozycji na liczbę
+     - map<char, char> CreatePlugboardConnections(vector<string> Connections)
+        Konstruuje połączenia literowe ze stringów
+     - string ConvertRotorAlphabet(string RotorNumber)
+        Zwraca alfabet przypisany do numeru rotora
+     - int ConvertRotorNotch(string RotorNumber)
+        Zwraca numer miejsca przeskoku dla symbolu rotora
+     - string ConvertReflector(string ReflectorName)
+        Zwraca alfabet przypisany do symbolu reflektora
+
+* Encoder
+
+Szyfruje tekst.
+
+Pola:
+    - const int alphabetLength = 26
+    - EnigmaSettings Settings;
+        Ustawienia przyjazne Enigmie
+
+Metody:
+    - public Encoder(UserSettings Settings)
+        Bierze ustawienia użytkownika i konwertuje je (poprzez inną funkcję) na ustawienia przyjazne Enigmie (EnigmaSettings)
+    - public string EncryptText(string origninalText)
+        Szyfruje tekst
+    - public char* ReturnRotorsPosition()
+        Zwraca aktualne pozycje rotorów 
+    - char EncryptChar(char letter)
+        Szyfruje znak
+    - char EnigmaPreRefEncoding (char originalCharacter, int encryptionSet)
+        Etap szyfrowania przed reflektorem
+        Encryption set stanowi informację, który rotor chcemy wykorzystać.
+    - char EnigmaPostRefEncoding(char originalCharacter, int encryptionSet)
+        Etap szyfrowania po reflektorze
+        Encryption set stanowi informację, który rotor chcemy wykorzystać.
+    - void StepRotors()
+        Przesuwa rotory
+    - void SetNewSettings(UserSettings Settings)
+        Aktualizuje ustawienia.
+
+Klasy Encoder, UserSettings, UserRotor stanowią publiczną część biblioteki.
+
+[Koniec części bibliotecznej]
+
+[Część implementacyjna]
+
+Klasa:
+
+* Encrypter
+
+Główna logika implemetnacji.
+
+Pola:
+    - char** args;
+      Kopia argumentów do dyspozycji objektu 
+    - int argc
+      Liczba argumentów
+
+Metody:
+    - Encrypter(char** args, int argc)
+        Przpisuje pola.
+    - void Encrypt()
+        Główna logika. Sprawdza, czy ustawiania da się skonwertować, czy plik istnieje, wypisuje informacje
+    - UserSettings BuildUserSettings()
+        Tworzy ustawienia użytkownika z argumentów.
+    - void ChangeArgs(char ** args)
+        Zmienia argumenty.
+
+* FileHandler
+
+Objemuje działania związane z zapisem.
+
+Metody:
+     - void CreateEncryptedFile(string sourceFilePath, string encryptedText)
+        Tworzy nowy plik z zaszyfrowaną zawartością, zapewnia unikalność nazwy.
+
+
