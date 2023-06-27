@@ -63,10 +63,10 @@ See [this.](https://github.com/wak-sudo/EnigmaCPP/tree/main/Docs/API.MD)
 Enigma M3 CLI (plug board supported):
 
     -e -> Create encrypted copy of a file
-    EnigmaSharpCLI.exe -e [file path] [reflector B/C/ETW] 3x [rotor number I-V] 3x [rotor initial position] + 3x [rotor ring setting] (optional plug board connections max. 13)
+    EnigmaCPP -e [file path] [reflector B/C/ETW] 3x [rotor number I-V] 3x [rotor initial position] + 3x [rotor ring setting] (optional plug board connections max. 13)
 
     -s -> Encrypt string
-    EnigmaSharpCLI.exe -s [string] [reflector B/C/ETW] 3x [rotor number I-V] 3x [rotor initial position] + 3x [rotor ring setting] (optional plug board connections max. 13)
+    EnigmaCPP -s [string] [reflector B/C/ETW] 3x [rotor number I-V] 3x [rotor initial position] + 3x [rotor ring setting] (optional plug board connections max. 13)
 
     -h -> Display this help.
 
