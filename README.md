@@ -45,11 +45,10 @@ You will need g++ compiler with C++17 support.
 
 #### Command-line tool 
 
-1. In `EnigmaCPP/CLI/include/` put:
+1. From library project `EnigmaCPP/Lib/`. Put into `EnigmaCPP/CLI/include/`:
     * `EnigmaCPP.h`
     * `EnigmaRotor.h`
     * `EnigmaSettings.h`
-From library project: `EnigmaCPP/Lib/`
 2. Put `LibEnigmaCPP.a` into `EnigmaCPP/CLI/libs` folder.
 3. Go to `EnigmaCPP/CLI`
 4. Use `make`
