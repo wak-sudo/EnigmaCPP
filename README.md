@@ -73,3 +73,7 @@ Enigma M3 CLI (plug board supported):
     Example:
     EnigmaCPP -e text.txt B I II III C B D F G D AZ BC;
 ```
+## Misc
+* [Opis działania Enigmy (Polish)](https://github.com/wak-sudo/EnigmaCPP/blob/main/Docs/Opis%20dzia%C5%82ania%20Enigmy.txt)
+* [Proto-diagram](https://github.com/wak-sudo/EnigmaCPP/blob/main/Docs/proto-diagram.png)
+* [Proto-opis](https://github.com/wak-sudo/EnigmaCPP/blob/main/Docs/Opis%20projektu%20(old).txt)
