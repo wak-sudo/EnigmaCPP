@@ -14,13 +14,13 @@ Po nastawieniu maszyny do określonych ustawień (omówionych poniżej), operato
 
 Enigma M3 posiadała 3 rotory, które można było wymieniać.
 
-Były to okrągłe dyski. Posiadały 26 liter i łączyły się z innymi elementami maszyny tworząć obwód elektryczny.
+Były to okrągłe dyski. Posiadały 26 liter i łączyły się z innymi elementami maszyny, tworząc obwód elektryczny.
 
 Ich działanie polegało przekierowywaniu napięcia do łączeń kolejnego elementu.
 
 Na tym etapie możemy myśleć o tym jako szyfrze podstawieniowym.
 
-Dla przykładu rotor oznaczny cyfrą "I":
+Dla przykładu rotor oznaczony cyfrą "I":
 
 ABCDEFGHIJKLMNOPQRSTUVWXYZ
 EKMFLGDQVZNTOWYHXUSPAIBRCJ
@@ -49,7 +49,7 @@ I Jeśli wirnik przejdzie z Q do R, następny wirnik zostanie przesunięty do pr
 II Jeśli rotor przejdzie z E do F, następny rotor zostanie przesunięty do przodu.
 III Jeśli rotor przejdzie z V do W, następny rotor zostanie przesunięty do przodu.
 
-Pojednycze wciśnięcie klawisza obracało o 1 rotor znajdujący najbardziej na prawo.
+Pojedyncze wciśnięcie klawisza obracało o 1 rotor znajdujący najbardziej na prawo.
 Jeżeli nastąpiło przejście tego rotoru z Q do R, następował także obrót II rotoru.
 
 Co ważne:
@@ -62,7 +62,7 @@ Czyniło z to szyfru enigmy szyfr polialfabetyczny.
 = Pozycja początkowa =
 
 Rotory można było dowolnie obracać, co pozwalało ustalać pozycję początkową.
-Nic nie stało na przeszkodzie by zacząć kodować od ustawienia np. AVX
+Nic nie stało na przeszkodzie, by zacząć kodować od ustawienia np. AVX
 
 = Ustawienia pierścienia =
 
@@ -77,16 +77,16 @@ EKMFLGDQVZNTOWYHXUSPAIBRCJ    FLNGMHERWAOUPXZIYVTQBJCSDK
 
 E -> F, K -> L itd.
 
-== Reflktor ==
+== Reflektor ==
 
-Po przejściu przez wszystkie rotory, sygnał trafia do reflektora.
-Refelktor jest po prostu szyfrem podstawieniowym, nie obraca się, nie można ustalać jego pozycji itd.
+Po przejściu przez wszystkie rotory sygnał trafia do reflektora.
+Reflektor jest po prostu szyfrem podstawieniowym, nie obraca się, nie można ustalać jego pozycji itd.
 Jego budowa nie pozwala jednak, aby litera zmieniła się w samą siebie (co jest słabością kryptograficzną).
-Zgodnie z nazwą reflektuje on syngał, t.j. zmienia znak i przesyła go z powrotem przez rotory.
+Zgodnie z nazwą reflektuje on sygnał, t.j. zmienia znak i przesyła go z powrotem przez rotory.
 
 == Łącznica kablowa ==
 
 Operator mógł łączyć litery w pary, które były zamieniane przed enkrypcją, i po enkrypcji.
 Jeżeli np. A <-> Z
-przy nacisęnięciu litery A wysyłany był syngał Z,
-a jeżeli końcowo zwracany był syngał Z, to zamieniany był na A.
+przy naciśnięciu litery A wysyłany był sygnał Z,
+a jeżeli końcowo zwracany był sygnał Z, to zamieniany był na A.
