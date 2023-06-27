@@ -24,4 +24,4 @@ Use `make`
 
 ## How to use
 
-See main project page.
+See the main project page.

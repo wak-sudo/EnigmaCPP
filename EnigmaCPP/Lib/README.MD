@@ -10,4 +10,4 @@ Use `make`
 
 ## How to use
 
-See main page.
+See the main page.
