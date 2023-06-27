@@ -1,0 +1,92 @@
+Wojciech Kieloch 2023
+
+Opis działania Enigmy.
+
+Enigma to maszyna szyfrująca wynaleziona na początku XX wieku, używana głównie przez III Rzeszę.
+
+Szyfrowanie było symetryczne. Posiadając początkowe ustawienia maszyny można było zakodować wiadomość jak i ją odkodować tymi samymi ustawieniami. Dlatego też do komunikacji wykorzystywano księgi dziennych ustawień, aby nie korzystać ciągle z tego samego szyfru.
+
+Po nastawieniu maszyny do określonych ustawień (omówionych poniżej), operator naciskał na klawiaturę, a na panelu zapalała się zaszyfrowana litera.
+
+=== Elementy szyfrowania ===
+
+== Rotory ==
+
+Enigma M3 posiadała 3 rotory, które można było wymieniać.
+
+Były to okrągłe dyski. Posiadały 26 liter i łączyły się z innymi elementami maszyny tworząć obwód elektryczny.
+
+Ich działanie polegało przekierowywaniu napięcia do łączeń kolejnego elementu.
+
+Na tym etapie możemy myśleć o tym jako szyfrze podstawieniowym.
+
+Dla przykładu rotor oznaczny cyfrą "I":
+
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+EKMFLGDQVZNTOWYHXUSPAIBRCJ
+
+Jeżeli użytkownik wcisnął A, do następnego elementu przechodził sygnał E, itd.
+
+= Mechanizm obrotu =
+
+Gdyby nie mechanizm obrotu i pozycje obrotu, enigma byłaby prostym szyfrem podstawieniowym.
+
+Z każdym wciśnięciem klawiatury, następował mechanizm obrotu, który polegał na cyklicznym przesunięciu alfabetu rotora. Po nim następowała enkrypcja.
+
+Dla przykładu:
+
+ABCDEFGHIJKLMNOPQRSTUVWXYZ -> Krok -> ABCDEFGHIJKLMNOPQRSTUVWXYZ
+EKMFLGDQVZNTOWYHXUSPAIBRCJ            KMFLGDQVZNTOWYHXUSPAIBRCJE
+
+'A' zostanie zakodowane jako 'K'.
+
+= Pozycje obrotu =
+
+Każdy rotor miał wbudowaną pozycję obrotu:
+Weźmy rotory 'I' 'II' 'III':
+
+I Jeśli wirnik przejdzie z Q do R, następny wirnik zostanie przesunięty do przodu.
+II Jeśli rotor przejdzie z E do F, następny rotor zostanie przesunięty do przodu.
+III Jeśli rotor przejdzie z V do W, następny rotor zostanie przesunięty do przodu.
+
+Pojednycze wciśnięcie klawisza obracało o 1 rotor znajdujący najbardziej na prawo.
+Jeżeli nastąpiło przejście tego rotoru z Q do R, następował także obrót II rotoru.
+
+Co ważne:
+Jeżeli nastąpiło przesunięcie lewego rotora, to rotor prawy zostaje przesunięty dodatkowo o jeden.
+Dla przykładu: ADV -> step -> AEW -> step -> BFX
+Jest to cecha często pomijana w implementacjach.
+
+Czyniło z to szyfru enigmy szyfr polialfabetyczny.
+
+= Pozycja początkowa =
+
+Rotory można było dowolnie obracać, co pozwalało ustalać pozycję początkową.
+Nic nie stało na przeszkodzie by zacząć kodować od ustawienia np. AVX
+
+= Ustawienia pierścienia =
+
+Enigma posiadała dodatkowe utrudniene - Ringstellung.
+
+Przesuwało ono cały alfabet pierścienia o zadaną wartość.
+
+Jeżeli Ringstellung był ustawiony na B (1), dla prawego rotora (I), następowała zmiana:
+
+ABCDEFGHIJKLMNOPQRSTUVWXYZ -> ABCDEFGHIJKLMNOPQRSTUVWXYZ
+EKMFLGDQVZNTOWYHXUSPAIBRCJ    FLNGMHERWAOUPXZIYVTQBJCSDK
+
+E -> F, K -> L itd.
+
+== Reflktor ==
+
+Po przejściu przez wszystkie rotory, sygnał trafia do reflektora.
+Refelktor jest po prostu szyfrem podstawieniowym, nie obraca się, nie można ustalać jego pozycji itd.
+Jego budowa nie pozwala jednak, aby litera zmieniła się w samą siebie (co jest słabością kryptograficzną).
+Zgodnie z nazwą reflektuje on syngał, t.j. zmienia znak i przesyła go z powrotem przez rotory.
+
+== Łącznica kablowa ==
+
+Operator mógł łączyć litery w pary, które były zamieniane przed enkrypcją, i po enkrypcji.
+Jeżeli np. A <-> Z
+przy nacisęnięciu litery A wysyłany był syngał Z,
+a jeżeli końcowo zwracany był syngał Z, to zamieniany był na A.
