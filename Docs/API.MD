@@ -61,7 +61,9 @@ Constructor.
 
 ##### Params: #####
 `RotorID RotorNumber` - rotor ID.
+
 `char InitialPosition` - initial position of rotor.
+
 `char RingSetting` - ring setting of rotor.
 
 #### RotorID getID() const noexcept ####
@@ -131,7 +133,9 @@ Constructor.
 
 ##### Params: #####
 `RotorID ReflectorName` - ID of the reflector.
+
 `std::vector<UserRotor>& Rotors` - vector storing rotors (from left to right).
+
 `std::vector<std::string>& PlugboardConnections` - vector storing plugboard connections.
 
 #### bool CanBeConverted() ####
@@ -160,7 +164,7 @@ Returns rotors.
 Returns plugboard connections.
 
 ##### Returns: #####
-std::vector\<std::string\> - plugboard connections.
+`std::vector\<std::string\>` - plugboard connections.
 
 #### void setReflectorName(RotorID id) noexcept ####
 ##### Description: #####
