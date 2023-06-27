@@ -54,9 +54,9 @@ void DisplayHelp()
     const std::string info =
     "Enigma M3 CLI (plug board supported): \n\n \
     -e -> Create encrypted copy of a file \n \
-    EnigmaSharpCLI.exe -e [file path] [reflector B/C/ETW] 3x [rotor number I-V] 3x [rotor initial position] + 3x [rotor ring setting] (optional plug board connections max. 13) \n\n \
+    EnigmaCPP -e [file path] [reflector B/C/ETW] 3x [rotor number I-V] 3x [rotor initial position] + 3x [rotor ring setting] (optional plug board connections max. 13) \n\n \
     -s -> Encrypt string \n \
-    EnigmaSharpCLI.exe -s [string] [reflector B/C/ETW] 3x [rotor number I-V] 3x [rotor initial position] + 3x [rotor ring setting] (optional plug board connections max. 13) \n\n \
+    EnigmaCPP -s [string] [reflector B/C/ETW] 3x [rotor number I-V] 3x [rotor initial position] + 3x [rotor ring setting] (optional plug board connections max. 13) \n\n \
     -h -> Display this help \n\n \
     Example: \n \
     EnigmaCPP -e text.txt B I II III C B D F G D AZ BC \n";
