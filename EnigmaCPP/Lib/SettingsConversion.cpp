@@ -20,7 +20,7 @@ std::unordered_map<RotorID, std::pair<std::string, int>> SettingsConversion::Rot
     {IV, {"ESOVPZJAYQUIRHXLNFTGKDCMWB", 9}},
     {V, {"VZBRGITYUPSDNHLXAWMJQOFECK", 25}}};
 
-std::unordered_map<RotorID, std::string> SettingsConversion::ReflectorInfo = {
+std::unordered_map<ReflectorID, std::string> SettingsConversion::ReflectorInfo = {
     {ETW, "ABCDEFGHIJKLMNOPQRSTUVWXYZ"},
     {B, "YRUHQSLDPXNGOKMIEBFZCWVJAT"},
     {C, "FVPJIAOYEDRZXWGCTKUQSBNMHL"}};
@@ -33,7 +33,7 @@ std::pair<std::string, int> SettingsConversion::GetRotorInfo(RotorID RotorName)
     return it->second;
 }
 
-std::string SettingsConversion::GetReflectorAlp(RotorID ReflectorName)
+std::string SettingsConversion::GetReflectorAlp(ReflectorID ReflectorName)
 {
     auto it = ReflectorInfo.find(ReflectorName);
     if (it == ReflectorInfo.end())

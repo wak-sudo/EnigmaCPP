@@ -12,13 +12,16 @@
 namespace Enigma
 {
     /**
-     * Rotor/reflector IDs.
+     * Rotor IDs.
      * 
      * Durning conversion from UserSettings to EnigmaSettings 
      * every ID will have their corresponding alphabet assigned.
      * E.g. I = "EKMFLGDQVZNTOWYHXUSPAIBRCJ"
     */
-    enum RotorID { I, II, III, IV, V, ETW, B, C};
+    enum RotorID { I, II, III, IV, V };
+
+    /* Reflector IDs */
+    enum ReflectorID { ETW, B, C };
     
     /**
      * Class holding rotor information in user friendly way.
@@ -106,11 +109,11 @@ namespace Enigma
          * Constructor,
          * 
          * Params:
-         * RotorID ReflectorName - ID of the reflector.
+         * ReflectorID ReflectorName - ID of the reflector.
          * std::vector<UserRotor>& Rotors - vector storing rotors (from left to right).
          * std::vector<std::string>& PlugboardConnections - vector storing plugboard connections.
          */
-        UserSettings(RotorID ReflectorName, const std::vector<UserRotor>& Rotors, const std::vector<std::string>& PlugboardConnections) noexcept :
+        UserSettings(ReflectorID ReflectorName, const std::vector<UserRotor>& Rotors, const std::vector<std::string>& PlugboardConnections) noexcept :
         ReflectorName(ReflectorName), Rotors(Rotors), PlugboardConnections(PlugboardConnections) {};
 
         /**
@@ -135,9 +138,9 @@ namespace Enigma
          * Returns reflector ID.
          *
          * Returns:
-         * RotorID - reflector ID.
+         * ReflectorID - reflector ID.
          */
-        RotorID getReflectorID() const noexcept { return ReflectorName; }
+        ReflectorID getReflectorID() const noexcept { return ReflectorName; }
 
         /**
          * Returns rotors.
@@ -159,9 +162,9 @@ namespace Enigma
          * Sets reflector id.
          * 
          * Params:
-         * RotorID id - new reflector id.
+         * ReflectorID id - new reflector id.
          */
-        void setReflectorName(RotorID id) noexcept { ReflectorName = id; }
+        void setReflectorName(ReflectorID id) noexcept { ReflectorName = id; }
 
         /**
          * Sets rotors.
@@ -180,8 +183,8 @@ namespace Enigma
         void setPlugboard(const std::vector<std::string>& nPG) noexcept { PlugboardConnections = nPG; }
 
     private:
-        /* ID of relfector. */
-        RotorID ReflectorName;
+        /* ID of the reflector. */
+        ReflectorID ReflectorName;
 
         /* User rotors from left to right. Size should be equal 3. */
         std::vector<UserRotor> Rotors;

@@ -17,15 +17,18 @@ namespace EnigmaCLI
         /**
          * Map: Custom rotor name -> RotorID 
         */
-        std::unordered_map<std::string, Enigma::RotorID> sToRid_Map = {
+        std::unordered_map<std::string, Enigma::RotorID> sToRoID_Map = {
             {"I", Enigma::RotorID::I},
             {"II", Enigma::RotorID::II},
             {"III", Enigma::RotorID::III},
             {"IV", Enigma::RotorID::IV},
-            {"V", Enigma::RotorID::V},
-            {"B", Enigma::RotorID::B},
-            {"C", Enigma::RotorID::C},
-            {"ETW", Enigma::RotorID::ETW}
+            {"V", Enigma::RotorID::V}
+        };
+
+        std::unordered_map<std::string, Enigma::ReflectorID> sToRefID_Map = {
+            {"B", Enigma::ReflectorID::B},
+            {"C", Enigma::ReflectorID::C},
+            {"ETW", Enigma::ReflectorID::ETW}
         };
 
         /* Min number of args for program, with program name and first param included. */ 
@@ -59,9 +62,20 @@ namespace EnigmaCLI
          * const char *arg - text to be converted.
          * 
          * Exceptions:
-         * If @arg will not be found in sToRid_Map, then an exception will be thrown.
+         * If @arg will not be found in sToRoID_Map, then an exception will be thrown.
         */
-        Enigma::RotorID sToRID(const char *arg) noexcept(false);
+        Enigma::RotorID sToRoID(const char *arg) noexcept(false);
+
+        /**
+         * Takes text and converts it to ReflectorID.
+         * 
+         * Params:
+         * const char *arg - text to be converted.
+         * 
+         * Exceptions:
+         * If @arg will not be found in sToRefID_Map, then an exception will be thrown.
+        */
+        Enigma::ReflectorID sToRefID(const char *arg) noexcept(false);
 
         /**
          * Provides name for a new encrypted file.

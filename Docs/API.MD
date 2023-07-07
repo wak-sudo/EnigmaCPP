@@ -47,6 +47,13 @@ A B C D E F G H I J  K  L  M  N  O  P  Q  R  S  T  U  V  W  X  Y  Z
 ```
 
 ## API Documentation ##
+### Globals ###
+#### enum RotorID ####
+Enum that represents IDs of supported rotors.
+
+#### enum ReflectorID ####
+Enum that represents IDs of supported reflectors.
+
 ### UserRotor class ###
 ##### Description: #####
 Class holds rotor information in user friendly way.
@@ -262,7 +269,7 @@ int main()
 
     std::vector<std::string> connections = {"AZ", "BC"};
 
-    UserSettings SU(B, UR, connections);
+    UserSettings SU(ReflectorID::B, UR, connections);
     if (SU.CanBeConverted())
     {
         Encoder enc(SU);

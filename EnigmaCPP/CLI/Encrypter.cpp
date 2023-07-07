@@ -42,18 +42,26 @@ Enigma::UserSettings Encrypter::BuildUserSettings(int argc, char *argv[])
             throw std::runtime_error(genericErrorMsg);
 
     std::vector<Enigma::UserRotor> Rotors = {
-        Enigma::UserRotor(sToRID(argv[4]), argv[7][0], argv[10][0]),
-        Enigma::UserRotor(sToRID(argv[5]), argv[8][0], argv[11][0]),
-        Enigma::UserRotor(sToRID(argv[6]), argv[9][0], argv[12][0])};
+        Enigma::UserRotor(sToRoID(argv[4]), argv[7][0], argv[10][0]),
+        Enigma::UserRotor(sToRoID(argv[5]), argv[8][0], argv[11][0]),
+        Enigma::UserRotor(sToRoID(argv[6]), argv[9][0], argv[12][0])};
 
-    return Enigma::UserSettings(sToRID(argv[3]), Rotors, plugboardConnections);
+    return Enigma::UserSettings(sToRefID(argv[3]), Rotors, plugboardConnections);
 }
 
-Enigma::RotorID Encrypter::sToRID(const char *arg)
+Enigma::RotorID Encrypter::sToRoID(const char *arg)
 {
-    auto it = sToRid_Map.find(std::string(arg));
-    if (it == sToRid_Map.end())
-        throw std::runtime_error("Invalid conversion from string to RID.");
+    auto it = sToRoID_Map.find(std::string(arg));
+    if (it == sToRoID_Map.end())
+        throw std::runtime_error("Invalid conversion from string to RoID.");
+    return it->second;
+}
+
+Enigma::ReflectorID Encrypter::sToRefID(const char *arg)
+{
+    auto it = sToRefID_Map.find(std::string(arg));
+    if (it == sToRefID_Map.end())
+        throw std::runtime_error("Invalid conversion from string to RefID.");
     return it->second;
 }
 

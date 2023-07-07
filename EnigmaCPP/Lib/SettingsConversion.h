@@ -23,8 +23,8 @@ namespace Enigma
         /* Map from RotorID to pair of corresponding alphabet and notch. Defined in the cpp file. */
         static std::unordered_map<RotorID, std::pair<std::string, int>> RotorInfo;
 
-        /* Map from RotorID of reflector to a corresponding alphabet. Defined in the cpp file. */
-        static std::unordered_map<RotorID, std::string> ReflectorInfo;
+        /* Map from ReflectorID of the reflector to a corresponding alphabet. Defined in the cpp file. */
+        static std::unordered_map<ReflectorID, std::string> ReflectorInfo;
 
     public:
         /**
@@ -128,7 +128,7 @@ namespace Enigma
          * Returns corresponding element from ReflectorInfo map, that is alphabet.
          * 
          * Params:
-         * RotorID ReflectorName - ID to be lookup-ed in ReflectorInfo
+         * ReflectorID ReflectorName - ID to be lookup-ed in ReflectorInfo
          * 
          * Exceptions:
          * If ReflectorName cannot be found in ReflectorInfo, an exception will be thrown.
@@ -136,6 +136,6 @@ namespace Enigma
          * Returns:
          * std::string - corresponding alphabet.
         */
-        static std::string GetReflectorAlp(RotorID ReflectorName) noexcept(false);
+        static std::string GetReflectorAlp(ReflectorID ReflectorName) noexcept(false);
     };
 }
