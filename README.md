@@ -35,17 +35,17 @@ A B C D E F G H I J  K  L  M  N  O  P  Q  R  S  T  U  V  W  X  Y  Z
 
 ## How to build
 
-You will need g++ compiler with C++17 support.
+You will need a g++ compiler with C++17 support.
 
 #### Library
 
 1. Go to `EnigmaCPP/Lib/`
 2. Use `make`
-3. `LibEnigmaCPP.a` will be build.
+3. A `LibEnigmaCPP.a` will be build.
 
 #### Command-line tool 
 
-1. From library project `EnigmaCPP/Lib/`. Put into `EnigmaCPP/CLI/include/`:
+1. From the library project `EnigmaCPP/Lib/`. Put into `EnigmaCPP/CLI/include/`:
     * `EnigmaCPP.h`
     * `EnigmaRotor.h`
     * `EnigmaSettings.h`
@@ -62,10 +62,10 @@ See [this.](https://github.com/wak-sudo/EnigmaCPP/tree/main/Docs/API.MD)
 ```
 Enigma M3 CLI (plug board supported):
 
-    -e -> Create encrypted copy of a file
+    -e -> Create an encrypted copy of a file
     EnigmaCPP -e [file path] [reflector B/C/ETW] 3x [rotor number I-V] 3x [rotor initial position] + 3x [rotor ring setting] (optional plug board connections max. 13)
 
-    -s -> Encrypt string
+    -s -> Encrypt a string
     EnigmaCPP -s [string] [reflector B/C/ETW] 3x [rotor number I-V] 3x [rotor initial position] + 3x [rotor ring setting] (optional plug board connections max. 13)
 
     -h -> Display this help.
